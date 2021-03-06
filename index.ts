@@ -1,5 +1,3 @@
-import { isDate } from "node:util";
-
 function getClasses(ele: Element) {
   var classes: string[] = [];
   ele.classList.forEach((className: string) => {
@@ -64,14 +62,12 @@ function matches(ele: Element, selector: string) {
   ).call(ele, selector);
 }
 
+// use this polyfill:
+// https://polyfill.io/v3/polyfill.min.js?features=document.querySelector
 function select(selector: string) {
-  if (document.querySelectorAll) {
-    return document.querySelectorAll(selector);
-  } else {
-    console.warn("TreeJS Warning: document.querySelectorAll not found!!");
-    selector = selector.split(".").join("class(");
-    return false;
-  }
+  selector = selector.split(" ").join('").querySelector("');
+  selector = 'document.querySelector("' + selector + '")';
+  return eval(selector) || false;
 }
 
 function inViweport(ele: Element) {
@@ -221,6 +217,15 @@ function changeHTML(ele: Element, innerHTML: string) {
   ele.innerHTML = innerHTML;
 }
 
+function getHTML(ele: Element) {
+  return ele.innerHTML;
+}
+
+function replaceEleAsChild(ele: Element, parentEle: Element) {
+  document.removeChild(ele);
+  parentEle.appendChild(ele);
+}
+
 function newElement(
   type: string,
   options: {
@@ -255,6 +260,36 @@ function newElement(
 
   if (inBody) document.body.appendChild(ele);
   else document.head.appendChild(ele);
+}
+
+function attachEvent(
+  ele: Element,
+  event: string,
+  exec: Function,
+  bubble: boolean = true
+) {
+  ele.addEventListener(
+    event,
+    (ev) => {
+      exec(ev);
+    },
+    !bubble
+  );
+}
+
+function detachEvent(
+  ele: Element,
+  event: string,
+  functionCalled: Function,
+  bubble: boolean = true
+) {
+  ele.removeEventListener(
+    event,
+    (ev) => {
+      functionCalled(ev);
+    },
+    !bubble
+  );
 }
 
 function loaded() {
