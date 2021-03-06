@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TJS</title>
+  <script src="../dist/index.js"></script>
+</head>
+
+<body>
+  <h1 class="myclass myclass2" id="mydid proski">Test Element!</h1>
+
+  <script>
+    const ele = select("h1.myclass")[0]
+    loaded()
+
+    console.log("getClasses:", getClasses(ele))
+
+    console.log("getIds:", getIds(ele))
+
+    console.log("Does ele contain #mydid?", containsId(ele, "mydid"))
+
+    toggleId(ele, "mydid")
+
+    console.log("Does ele contain #mydid?", containsId(ele, "mydid"))
+
+    toggleClass(ele, "myclass")
+
+    console.log("Does ele contain .myclass?", containsClass(ele, "myclass"))
+
+    newElement("h1", true)
+  </script>
+</body>
+
+</html>

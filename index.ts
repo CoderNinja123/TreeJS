@@ -1,3 +1,5 @@
+import { isDate } from "node:util";
+
 function getClasses(ele: Element) {
   var classes: string[] = [];
   ele.classList.forEach((className: string) => {
@@ -67,6 +69,7 @@ function select(selector: string) {
     return document.querySelectorAll(selector);
   } else {
     console.warn("TreeJS Warning: document.querySelectorAll not found!!");
+    selector = selector.split(".").join("class(");
     return false;
   }
 }
@@ -84,6 +87,11 @@ function inViweport(ele: Element) {
 
 function setId(ele: Element, id: string) {
   ele.setAttribute("id", id);
+}
+
+function setIds(ele: Element, ids: string[]) {
+  setId(ele, ids[0]);
+  if (ids.length > 1) addIds(ele, ids.slice(1));
 }
 
 function addId(ele: Element, id: string) {
@@ -209,40 +217,46 @@ function containtsAttrs(ele: Element, attrs: string[]) {
   return true;
 }
 
+function changeHTML(ele: Element, innerHTML: string) {
+  ele.innerHTML = innerHTML;
+}
+
+function newElement(
+  type: string,
+  options: {
+    ids?: string[];
+    attrNames?: string[];
+    attrVals?: string[];
+    classes?: string[];
+    innerHTML?: string;
+  },
+  inBody: boolean = true
+) {
+  var ele = document.createElement(type);
+  if (options) {
+    var { ids, attrNames, attrVals, classes, innerHTML } = options;
+
+    if (ids) {
+      setIds(ele, ids);
+    }
+
+    if (attrNames && attrVals) {
+      setAttrs(ele, attrNames, attrVals);
+    }
+
+    if (classes) {
+      addClasses(ele, classes);
+    }
+
+    if (innerHTML) {
+      changeHTML(ele, innerHTML);
+    }
+  }
+
+  if (inBody) document.body.appendChild(ele);
+  else document.head.appendChild(ele);
+}
+
 function loaded() {
   console.log("TreeJS Loaded Successfully!");
 }
-
-const TreeJS = {
-  getClasses,
-  addClass,
-  addClasses,
-  removeClass,
-  removeClasses,
-  toggleClass,
-  toggleClasses,
-  containsClass,
-  containtsClasses,
-  matches,
-  select,
-  inViweport,
-  addId,
-  addIds,
-  getIds,
-  removeId,
-  removeIds,
-  toggleId,
-  toggleIds,
-  containsId,
-  containsIds,
-  setAttr,
-  setAttrs,
-  getAttr,
-  removeAttr,
-  removeAttrs,
-  toggleAttr,
-  toggleAttrs,
-  containtsAttr,
-  containtsAttrs,
-  loaded,
-};

@@ -33,7 +33,8 @@ function containsClass(ele, className) {
     return ele.classList.contains(className);
 }
 function containtsClasses(ele, classNames) {
-    for (var cl in classNames) {
+    for (var i = 0; i < classNames.length; i++) {
+        var cl = classNames[i];
         if (!containsClass(ele, cl)) {
             return false;
         }
@@ -54,6 +55,7 @@ function select(selector) {
     }
     else {
         console.warn("TreeJS Warning: document.querySelectorAll not found!!");
+        selector = selector.split(".").join("class(");
         return false;
     }
 }
@@ -67,6 +69,11 @@ function inViweport(ele) {
 }
 function setId(ele, id) {
     ele.setAttribute("id", id);
+}
+function setIds(ele, ids) {
+    setId(ele, ids[0]);
+    if (ids.length > 1)
+        addIds(ele, ids.slice(1));
 }
 function addId(ele, id) {
     var ids = String(ele.id).concat(id);
@@ -109,7 +116,8 @@ function containsId(ele, id) {
     return false;
 }
 function containsIds(ele, ids) {
-    for (var id in ids) {
+    for (var i = 0; i < ids.length; i++) {
+        var id = ids[i];
         if (!containsId(ele, id)) {
             return false;
         }
@@ -165,46 +173,41 @@ function containtsAttr(ele, attr) {
         return false;
 }
 function containtsAttrs(ele, attrs) {
-    for (var attr in attrs) {
+    for (var i = 0; i < attrs.length; i++) {
+        var attr = attrs[i];
         if (!containtsAttr(ele, attr)) {
             return false;
         }
     }
     return true;
 }
+function changeHTML(ele, innerHTML) {
+    ele.innerHTML = innerHTML;
+}
+function newElement(type, options, inBody) {
+    if (inBody === void 0) { inBody = true; }
+    var ele = document.createElement(type);
+    if (options) {
+        var ids = options.ids, attrNames = options.attrNames, attrVals = options.attrVals, classes = options.classes, innerHTML = options.innerHTML;
+        if (ids) {
+            setIds(ele, ids);
+        }
+        if (attrNames && attrVals) {
+            setAttrs(ele, attrNames, attrVals);
+        }
+        if (classes) {
+            addClasses(ele, classes);
+        }
+        if (innerHTML) {
+            changeHTML(ele, innerHTML);
+        }
+    }
+    if (inBody)
+        document.body.appendChild(ele);
+    else
+        document.head.appendChild(ele);
+}
 function loaded() {
     console.log("TreeJS Loaded Successfully!");
 }
-var TreeJS = {
-    getClasses: getClasses,
-    addClass: addClass,
-    addClasses: addClasses,
-    removeClass: removeClass,
-    removeClasses: removeClasses,
-    toggleClass: toggleClass,
-    toggleClasses: toggleClasses,
-    containsClass: containsClass,
-    containtsClasses: containtsClasses,
-    matches: matches,
-    select: select,
-    inViweport: inViweport,
-    addId: addId,
-    addIds: addIds,
-    getIds: getIds,
-    removeId: removeId,
-    removeIds: removeIds,
-    toggleId: toggleId,
-    toggleIds: toggleIds,
-    containsId: containsId,
-    containsIds: containsIds,
-    setAttr: setAttr,
-    setAttrs: setAttrs,
-    getAttr: getAttr,
-    removeAttr: removeAttr,
-    removeAttrs: removeAttrs,
-    toggleAttr: toggleAttr,
-    toggleAttrs: toggleAttrs,
-    containtsAttr: containtsAttr,
-    containtsAttrs: containtsAttrs,
-    loaded: loaded
-};
+//# sourceMappingURL=index.js.map

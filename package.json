@@ -1,0 +1,28 @@
+{
+  "name": "treejs",
+  "version": "1.0.0",
+  "description": "A DOM Editor",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "node devscripts/compileTS.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderNinja123/TreeJS.git"
+  },
+  "author": "CoderNinja123",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CoderNinja123/TreeJS/issues"
+  },
+  "homepage": "https://github.com/CoderNinja123/TreeJS#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.31"
+  },
+  "dependencies": {
+    "minify": "^7.0.1"
+  }
+}
