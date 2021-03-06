@@ -30,7 +30,12 @@
 
     console.log("Does ele contain .myclass?", containsClass(ele, "myclass"))
 
-    newElement("h1", true)
+    newElement("h1", {
+      ids: ["myid1", "weeee"],
+      attrNames: ["i can contain spaces"],
+      attrVals: ["i.is string"],
+      classes: ["this is class"]
+     }, "This is some HTML!")
   </script>
 </body>
 

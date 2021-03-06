@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "node devscripts/compileTS.js"
+    "build": "node devscripts/compileTS.js",
+    "quick": "node devscripts/compileTSQuick.js"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,7 @@ function getClasses(ele: Element) {
 }
 
 function addClass(ele: Element, className: string) {
-  ele.classList.add(className);
+  ele.classList.add(className.split(" ").join("-"));
 }
 
 function addClasses(ele: Element, classNames: string[]) {
@@ -67,7 +67,9 @@ function matches(ele: Element, selector: string) {
 function select(selector: string) {
   selector = selector.split(" ").join('").querySelector("');
   selector = 'document.querySelector("' + selector + '")';
-  return eval(selector) || false;
+  var selectorArr: string[] = [eval(selector)];
+
+  return selectorArr || false;
 }
 
 function inViweport(ele: Element) {
@@ -97,7 +99,7 @@ function addId(ele: Element, id: string) {
 
 function addIds(ele: Element, ids: string[]) {
   ids.forEach((id: string) => {
-    addId(ele, id);
+    addId(ele, " ".concat(id));
   });
 }
 
@@ -164,7 +166,7 @@ function toggleIds(ele: Element, ids: string[]) {
 }
 
 function setAttr(ele: Element, attr: string, val: string) {
-  ele.setAttribute(attr, val);
+  ele.setAttribute(attr.split(" ").join("-"), val);
 }
 
 function setAttrs(ele: Element, attrs: string[], vals: string[]) {
