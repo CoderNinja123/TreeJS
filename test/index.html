@@ -12,6 +12,10 @@
 <body>
   <h1 class="myclass myclass2" id="mydid proski">Test Element!</h1>
 
+  <div style="width: 100px; height: 100px;">
+    <h1>HAHA</h1>
+  </div>
+
   <script>
     const ele = select("h1.myclass")[0]
     loaded()
@@ -30,12 +34,20 @@
 
     console.log("Does ele contain .myclass?", containsClass(ele, "myclass"))
 
+    function doSomething(ev) {
+      console.log("Hover!")
+    }
+
     newElement("h1", {
       ids: ["myid1", "weeee"],
       attrNames: ["i can contain spaces"],
       attrVals: ["i.is string"],
       classes: ["this is class"]
-     }, "This is some HTML!")
+    }, "This is some HTML!")
+
+    attachEvent(select("div")[0], "mouseover", doSomething)
+
+    detachEvent(select("div")[0], "mouseover", doSomething)
   </script>
 </body>
 

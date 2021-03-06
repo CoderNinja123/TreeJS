@@ -267,31 +267,19 @@ function newElement(
 function attachEvent(
   ele: Element,
   event: string,
-  exec: Function,
+  exec: VoidFunction,
   bubble: boolean = true
 ) {
-  ele.addEventListener(
-    event,
-    (ev) => {
-      exec(ev);
-    },
-    !bubble
-  );
+  ele.addEventListener(event, exec, !bubble);
 }
 
 function detachEvent(
   ele: Element,
   event: string,
-  functionCalled: Function,
+  functionCalled: VoidFunction,
   bubble: boolean = true
 ) {
-  ele.removeEventListener(
-    event,
-    (ev) => {
-      functionCalled(ev);
-    },
-    !bubble
-  );
+  ele.removeEventListener(event, functionCalled, !bubble);
 }
 
 function loaded() {
