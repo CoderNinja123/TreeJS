@@ -31,6 +31,8 @@ declare function toggleAttrs(ele: Element, attrs: string[]): void;
 declare function containtsAttr(ele: Element, attr: string): boolean;
 declare function containtsAttrs(ele: Element, attrs: string[]): boolean;
 declare function changeHTML(ele: Element, innerHTML: string): void;
+declare function getHTML(ele: Element): string;
+declare function replaceEleAsChild(ele: Element, parentEle: Element): void;
 declare function newElement(type: string, options: {
     ids?: string[];
     attrNames?: string[];
@@ -38,4 +40,6 @@ declare function newElement(type: string, options: {
     classes?: string[];
     innerHTML?: string;
 }, inBody?: boolean): void;
+declare function attachEvent(ele: Element, event: string, exec: VoidFunction, bubble?: boolean): void;
+declare function detachEvent(ele: Element, event: string, functionCalled: VoidFunction, bubble?: boolean): void;
 declare function loaded(): void;

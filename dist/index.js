@@ -6,7 +6,7 @@ function getClasses(ele) {
     return classes;
 }
 function addClass(ele, className) {
-    ele.classList.add(className);
+    ele.classList.add(className.split(" ").join("-"));
 }
 function addClasses(ele, classNames) {
     classNames.forEach(function (cl) {
@@ -49,15 +49,10 @@ function matches(ele, selector) {
         ele.webkitMatchesSelector ||
         ele.oMatchesSelector).call(ele, selector);
 }
+// use this polyfill:
+// https://polyfill.io/v3/polyfill.min.js?features=document.querySelector
 function select(selector) {
-    if (document.querySelectorAll) {
-        return document.querySelectorAll(selector);
-    }
-    else {
-        console.warn("TreeJS Warning: document.querySelectorAll not found!!");
-        selector = selector.split(".").join("class(");
-        return false;
-    }
+    return document.querySelectorAll(selector) || false;
 }
 function inViweport(ele) {
     var rect = ele.getBoundingClientRect();
@@ -81,7 +76,7 @@ function addId(ele, id) {
 }
 function addIds(ele, ids) {
     ids.forEach(function (id) {
-        addId(ele, id);
+        addId(ele, " ".concat(id));
     });
 }
 function getIds(ele) {
@@ -139,7 +134,7 @@ function toggleIds(ele, ids) {
     });
 }
 function setAttr(ele, attr, val) {
-    ele.setAttribute(attr, val);
+    ele.setAttribute(attr.split(" ").join("-"), val);
 }
 function setAttrs(ele, attrs, vals) {
     for (var i = 0; i < attrs.length; i++) {
@@ -184,6 +179,13 @@ function containtsAttrs(ele, attrs) {
 function changeHTML(ele, innerHTML) {
     ele.innerHTML = innerHTML;
 }
+function getHTML(ele) {
+    return ele.innerHTML;
+}
+function replaceEleAsChild(ele, parentEle) {
+    document.removeChild(ele);
+    parentEle.appendChild(ele);
+}
 function newElement(type, options, inBody) {
     if (inBody === void 0) { inBody = true; }
     var ele = document.createElement(type);
@@ -206,6 +208,14 @@ function newElement(type, options, inBody) {
         document.body.appendChild(ele);
     else
         document.head.appendChild(ele);
+}
+function attachEvent(ele, event, exec, bubble) {
+    if (bubble === void 0) { bubble = true; }
+    ele.addEventListener(event, exec, !bubble);
+}
+function detachEvent(ele, event, functionCalled, bubble) {
+    if (bubble === void 0) { bubble = true; }
+    ele.removeEventListener(event, functionCalled, !bubble);
 }
 function loaded() {
     console.log("TreeJS Loaded Successfully!");

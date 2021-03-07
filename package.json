@@ -21,9 +21,7 @@
   },
   "homepage": "https://github.com/CoderNinja123/TreeJS#readme",
   "devDependencies": {
-    "@types/node": "^14.14.31"
-  },
-  "dependencies": {
+    "@types/node": "^14.14.31",
     "minify": "^7.0.1"
   }
 }

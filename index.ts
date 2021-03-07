@@ -65,11 +65,7 @@ function matches(ele: Element, selector: string) {
 // use this polyfill:
 // https://polyfill.io/v3/polyfill.min.js?features=document.querySelector
 function select(selector: string) {
-  selector = selector.split(" ").join('").querySelector("');
-  selector = 'document.querySelector("' + selector + '")';
-  var selectorArr: string[] = [eval(selector)];
-
-  return selectorArr || false;
+  return document.querySelectorAll(selector) || false;
 }
 
 function inViweport(ele: Element) {
