@@ -45,3 +45,8 @@ People who want speed. People who want simplicity. People who want to edit DOM w
 That's right. TreeJS is _currently_ in development, and has not been tested on older browsers. It works on modern browsers (Firefox, Chrome, Edge).
 
 Thanks for reading this ReadMe!
+
+
+### What's With the Name?
+
+What is DOM? DOM is a tree. What does TreeJS do? TreeJS modifies the DOM. TreeJS modifies a *tree* called DOM. TreeJS modifies a tree. It is written in TypeScript, but *compiles* to JavaScript. So you *can* say it is written in JavaScript. So, TreeJS written in **JavaScipt** modifies a **tree** called **DOM**. Simple as that.
