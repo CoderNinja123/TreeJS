@@ -278,6 +278,16 @@ function detachEvent(
   ele.removeEventListener(event, functionCalled, !bubble);
 }
 
+function addCSS(ele: Element, css: {}) {
+  for (let propName in css) {
+    if (css.hasOwnProperty(propName)) {
+      let propVal = css[propName];
+      // @ts-ignore
+      ele.style[propName] = propVal;
+    }
+  }
+}
+
 function loaded() {
   console.log("TreeJS Loaded Successfully!");
 }

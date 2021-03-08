@@ -10,14 +10,14 @@
 </head>
 
 <body>
-  <h1 class="myclass myclass2" id="mydid proski">Test Element!</h1>
+  <h1 class="myclass myclass2 this" id="mydid proski">Test Element!</h1>
 
   <div style="width: 100px; height: 100px;">
     <h1>HAHA</h1>
   </div>
 
   <script>
-    const ele = select("h1.myclass")[0]
+    const ele = select("h1.this")[0]
     loaded()
 
     console.log("getClasses:", getClasses(ele))
@@ -48,6 +48,10 @@
     attachEvent(select("div")[0], "mouseover", doSomething)
 
     detachEvent(select("div")[0], "mouseover", doSomething)
+
+    addCSS(ele, {
+      background: 'red'
+    })
   </script>
 </body>
 
