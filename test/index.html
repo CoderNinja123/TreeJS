@@ -47,6 +47,8 @@
 
     attachEvent(select("div")[0], "mouseover", doSomething)
 
+    trigger(select("div")[0], "mouseover")
+
     detachEvent(select("div")[0], "mouseover", doSomething)
 
     addCSS(ele, {

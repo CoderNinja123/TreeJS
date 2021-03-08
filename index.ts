@@ -296,6 +296,23 @@ function addSiblingBefore(ele: Element, sibling: String) {
   ele.insertAdjacentHTML("beforebegin", sibling.toString());
 }
 
+function trigger(ele: Element, event: string) {
+  if ("createEvent" in document) {
+    // modern browsers, IE9+
+    var e = document.createEvent("HTMLEvents");
+    e.initEvent(event, false, true);
+    ele.dispatchEvent(e);
+  } else {
+    // IE 8
+    // @ts-ignore
+    var e = document.createEventObject();
+    // @ts-ignore
+    e.eventType = event;
+    // @ts-ignore
+    ele.fireEvent("on" + e.eventType, e);
+  }
+}
+
 function loaded() {
   console.log("TreeJS Loaded Successfully!");
 }

@@ -46,4 +46,5 @@ declare function detachEvent(ele: Element, event: string, functionCalled: VoidFu
 declare function addCSS(ele: Element, css: {}): void;
 declare function addSiblingAfter(ele: Element, sibling: String): void;
 declare function addSiblingBefore(ele: Element, sibling: String): void;
+declare function trigger(ele: Element, event: string): void;
 declare function loaded(): void;
