@@ -288,6 +288,14 @@ function addCSS(ele: Element, css: {}) {
   }
 }
 
+function addSiblingAfter(ele: Element, sibling: String) {
+  ele.insertAdjacentHTML("afterend", sibling.toString());
+}
+
+function addSiblingBefore(ele: Element, sibling: String) {
+  ele.insertAdjacentHTML("beforebegin", sibling.toString());
+}
+
 function loaded() {
   console.log("TreeJS Loaded Successfully!");
 }

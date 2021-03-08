@@ -43,4 +43,6 @@ declare function newElement(type: string, options: {
 declare function attachEvent(ele: Element, event: string, exec: VoidFunction, bubble?: boolean): void;
 declare function detachEvent(ele: Element, event: string, functionCalled: VoidFunction, bubble?: boolean): void;
 declare function addCSS(ele: Element, css: {}): void;
+declare function addSiblingAfter(ele: Element, sibling: String): void;
+declare function addSiblingBefore(ele: Element, sibling: String): void;
 declare function loaded(): void;

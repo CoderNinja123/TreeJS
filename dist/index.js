@@ -226,6 +226,12 @@ function addCSS(ele, css) {
         }
     }
 }
+function addSiblingAfter(ele, sibling) {
+    ele.insertAdjacentHTML("afterend", sibling.toString());
+}
+function addSiblingBefore(ele, sibling) {
+    ele.insertAdjacentHTML("beforebegin", sibling.toString());
+}
 function loaded() {
     console.log("TreeJS Loaded Successfully!");
 }
