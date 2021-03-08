@@ -39,7 +39,8 @@ declare function newElement(type: string, options: {
     attrVals?: string[];
     classes?: string[];
     innerHTML?: string;
-}, inBody?: boolean): void;
+    appendTo?: Element;
+}): void;
 declare function attachEvent(ele: Element, event: string, exec: VoidFunction, bubble?: boolean): void;
 declare function detachEvent(ele: Element, event: string, functionCalled: VoidFunction, bubble?: boolean): void;
 declare function addCSS(ele: Element, css: {}): void;

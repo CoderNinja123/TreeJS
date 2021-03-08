@@ -186,11 +186,10 @@ function replaceEleAsChild(ele, parentEle) {
     document.removeChild(ele);
     parentEle.appendChild(ele);
 }
-function newElement(type, options, inBody) {
-    if (inBody === void 0) { inBody = true; }
+function newElement(type, options) {
     var ele = document.createElement(type);
     if (options) {
-        var ids = options.ids, attrNames = options.attrNames, attrVals = options.attrVals, classes = options.classes, innerHTML = options.innerHTML;
+        var ids = options.ids, attrNames = options.attrNames, attrVals = options.attrVals, classes = options.classes, innerHTML = options.innerHTML, appendTo = options.appendTo;
         if (ids) {
             setIds(ele, ids);
         }
@@ -204,10 +203,10 @@ function newElement(type, options, inBody) {
             changeHTML(ele, innerHTML);
         }
     }
-    if (inBody)
-        document.body.appendChild(ele);
+    if (appendTo)
+        appendTo.appendChild(ele);
     else
-        document.head.appendChild(ele);
+        document.body.appendChild(ele);
 }
 function attachEvent(ele, event, exec, bubble) {
     if (bubble === void 0) { bubble = true; }

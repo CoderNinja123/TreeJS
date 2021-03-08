@@ -232,12 +232,12 @@ function newElement(
     attrVals?: string[];
     classes?: string[];
     innerHTML?: string;
+    appendTo?: Element
   },
-  inBody: boolean = true
 ) {
   var ele = document.createElement(type);
   if (options) {
-    var { ids, attrNames, attrVals, classes, innerHTML } = options;
+    var { ids, attrNames, attrVals, classes, innerHTML, appendTo } = options;
 
     if (ids) {
       setIds(ele, ids);
@@ -256,8 +256,8 @@ function newElement(
     }
   }
 
-  if (inBody) document.body.appendChild(ele);
-  else document.head.appendChild(ele);
+  if (appendTo) appendTo.appendChild(ele);
+  else document.body.appendChild(ele);
 }
 
 function attachEvent(
